@@ -41,10 +41,10 @@
                 </a>
               </li>
               <li class="nav-item">
-                {{-- <a href="{{ route('admin.posts.index')}}" class="nav-link">
+                <a href="{{ route('admin.posts.index')}}" class="nav-link">
                   <i class="bi bi-file-post-fill"></i>
                   <p>Записи</p>
-                </a> --}}
+                </a>
               </li>
               <li class="nav-item">
                 {{-- <a href="{{ route('admin.users.index')}}" class="nav-link">
