@@ -20,6 +20,14 @@ use App\Http\Controllers\Admin\Tag\EditController as AdminTagEditController;
 use App\Http\Controllers\Admin\Tag\UpdateController as AdminTagUpdateController;
 use App\Http\Controllers\Admin\Tag\DeleteController as AdminTagDeleteController;
 
+use App\Http\Controllers\Admin\Post\IndexController as AdminPostIndexController;
+use App\Http\Controllers\Admin\Post\CreateController as AdminPostCreateController;
+use App\Http\Controllers\Admin\Post\StoreController as AdminPostStoreController;
+use App\Http\Controllers\Admin\Post\ShowController as AdminPostShowController;
+use App\Http\Controllers\Admin\Post\EditController as AdminPostEditController;
+use App\Http\Controllers\Admin\Post\UpdateController as AdminPostUpdateController;
+use App\Http\Controllers\Admin\Post\DeleteController as AdminPostDeleteController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -95,5 +103,34 @@ Route::prefix('admin')
                         ->name('delete');
                 });
     /****** End Теги *******/
+    /****** Posts *******/        
+        Route::prefix('posts')
+            ->name('posts.')
+            ->group(function () {
+                Route::get('/', AdminPostIndexController::class)->name('index');
+
+                Route::get('/create', AdminPostCreateController::class)
+                    ->name('create');
+
+                Route::post('/', AdminPostStoreController::class)
+                     ->name('store');
+                
+                Route::get('/{post}', AdminPostShowController::class)
+                     ->name('show');
+                /* 
+                    можно и так, то есть без разницы с верхними
+                    но это если контролеер обычный, а не одноконтроллерный, то есть с методом __invoke
+                */
+                Route::get('/{post}/edit', [AdminPostEditController::class, '__invoke']) 
+                     ->name('edit');
+
+                Route::put('/{post}', [AdminPostUpdateController::class, '__invoke'])
+                     ->name('update');
+
+                Route::delete('/{post}', [AdminPostDeleteController::class, '__invoke'])
+                    ->name('delete');
+            });
+        /****** End Posts *******/
+
 
 });
