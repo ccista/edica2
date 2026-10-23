@@ -56,6 +56,9 @@
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     
     <link rel="stylesheet" href="{{ asset('./css/adminlte.css') }}" />
+
+    
+
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -430,12 +433,12 @@
     <!-- OPTIONAL SCRIPTS -->
 
     <!-- sortablejs -->
-    <script
+    {{-- <script
       src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> --}}
     <!-- sortablejs -->
-    <script>
+    {{-- <script>
       new Sortable(document.querySelector('.connectedSortable'), {
         group: 'shared',
         handle: '.card-header',
@@ -445,8 +448,48 @@
       cardHeaders.forEach((cardHeader) => {
         cardHeader.style.cursor = 'move';
       });
-    </script>
-    
+    </script> --}}
+
+    <!-- Include the Quill library -->
+   
+  <script
+      src="https://cdn.tiny.cloud/1/rmjt863mb52ijfiobnujcacavywtqumyt6dar9dykd3bxl5o/tinymce/8/tinymce.min.js"
+      referrerpolicy="origin"
+      crossorigin="anonymous">
+  </script>
+  <script>    
+    tinymce.init({
+        selector: '#content',
+        language: 'ru',
+        height: 450,
+        menubar: true,
+
+        plugins: [
+            'advlist', 'autolink', 'lists', 'link',
+            'charmap', 'preview', 'anchor', 'searchreplace',
+            'visualblocks', 'code', 'fullscreen',
+            'table', 'wordcount'
+        ],
+
+        toolbar: [
+            'undo redo | blocks | bold italic underline',
+            'forecolor backcolor | alignleft aligncenter alignright',
+            'bullist numlist | link table | code preview fullscreen'
+        ].join(' | '),
+
+        content_style: `
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 16px;
+                line-height: 1.6;
+                padding: 10px;
+            }
+        `,
+
+        language_url: null
+    });
+
+  </script>
     
     
     <!--end::Script-->
