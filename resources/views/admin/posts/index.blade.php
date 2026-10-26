@@ -67,7 +67,8 @@
                         <tr>
                           <th style="width: 10px">#</th>
                           <th>Название</th>                    
-                          <th>Actions</th>                    
+                          <th>Actions</th>
+                          <th>Image</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -82,6 +83,11 @@
                               <a href="{{ route('admin.posts.edit', $post->id) }}">
                                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="ionicon"><path d="M364.13 125.25 87 403l-23 45 44.99-23 277.76-277.13zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 0 0 0-22.62h0a16 16 0 0 0-22.62 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"/></svg>
                               </a>
+                            </td>
+                            <td>
+                              <img src="{{ asset('storage/' . $post->preview_image) }}"
+                                style="width:50px; height: 50px"  
+                              >
                             </td>
                           </tr>
                         @endforeach                                            
