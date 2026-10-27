@@ -117,17 +117,29 @@
                 </div>
 
                   <div class="mb-3">
-                      <label class="form-label" for="select-multiple">Теги:</label>
-                      <select name="tag_ids[]" class="form-select" id="select-multiple" multiple="" size="3">
-                        @foreach($tags as $tag)
-                          <option value="{{ $tag->id }}"
-                            {{ in_array($tag->id, old('tag_ids', [])) ? 'selected' : '' }}
-                          >{{ $tag->title }}</option>
-                        @endforeach
+                      <label class="form-label" for="select-multiple">
+                          Теги:
+                      </label>
+
+                      <select
+                          name="tag_ids[]"
+                          class="form-select"
+                          id="select-multiple"
+                          multiple
+                          placeholder="Начните вводить название тега..."
+                      >
+                          @foreach($tags as $tag)
+                              <option
+                                  value="{{ $tag->id }}"
+                                  {{ in_array($tag->id, old('tag_ids', [])) ? 'selected' : '' }}
+                              >
+                                  {{ $tag->title }}
+                              </option>
+                          @endforeach
                       </select>
                   </div>
                   @error('tag_ids')
-                      <div class="text-danger mb-3">{{ $message }}</div>
+                    <div class="text-danger mb-3">{{ $message }}</div>
                   @enderror
 
                   <button type="submit" class="btn btn-primary">Создать</button>

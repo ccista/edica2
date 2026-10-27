@@ -57,7 +57,10 @@
     
     <link rel="stylesheet" href="{{ asset('./css/adminlte.css') }}" />
 
-    
+    <link
+      href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.bootstrap5.min.css"
+      rel="stylesheet"
+    >    
 
   </head>
   <!--end::Head-->
@@ -490,9 +493,31 @@
     });
 
   </script>
-    
-    
-    <!--end::Script-->
+  
+
+  <!-- for tags Для тегов -->
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new TomSelect('#select-multiple', {
+            plugins: ['remove_button'],
+            create: false,
+            maxOptions: null,
+            hideSelected: true,
+            closeAfterSelect: false,
+            placeholder: 'Начните вводить название тега...',
+            searchField: ['text'],
+            render: {
+                no_results: function () {
+                    return '<div class="no-results">Теги не найдены</div>';
+                }
+            }
+        });
+    });
+  </script>
+  <!-- for tags Для тегов -->
+  
+  <!--end::Script-->
   </body>
   <!--end::Body-->
 </html>
