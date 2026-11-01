@@ -32,4 +32,17 @@ class UpdateRequest extends FormRequest
             'tag_ids.*' => 'nullable|integer|exists:tags,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Это поле необходимо дляч заполнения',
+            'content.required' => 'Это поле необходимо дляч заполнения',
+            'category_id.exists' => 'The selected category does not exist.',
+            'main_image.image' => 'The main image must be an image file.',
+            'preview_image.image' => 'The preview image must be an image file.',
+            'tag_ids.array' => 'The tag IDs must be an array.',
+            'tag_ids.*.exists' => 'One or more selected tags do not exist.',
+        ];
+    }
 }

@@ -36,8 +36,8 @@ class StoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => 'The title field is required.',
-            'content.required' => 'The content field is required.',
+            'title.required' => 'Это поле необходимо дляч заполнения',
+            'content.required' => 'Это поле необходимо дляч заполнения',
             'category_id.exists' => 'The selected category does not exist.',
             'main_image.image' => 'The main image must be an image file.',
             'preview_image.image' => 'The preview image must be an image file.',

@@ -47,10 +47,10 @@
                 </a>
               </li>
               <li class="nav-item">
-                {{-- <a href="{{ route('admin.users.index')}}" class="nav-link">
+                <a href="{{ route('admin.users.index')}}" class="nav-link">
                   <i class="bi bi-person-bounding-box"></i>
                   <p>Пользователи</p>
-                </a> --}}
+                </a>
               </li>
 
             </ul>

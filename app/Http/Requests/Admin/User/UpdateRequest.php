@@ -33,4 +33,17 @@ class UpdateRequest extends FormRequest
             'role' => 'required|in:0,1',
         ];
     }
+
+     public function messages(): array
+    {
+        return [
+            'name.required' => 'The name field is required.',
+            'email.required' => 'The email field is required.',
+            'email.email' => 'The email must be a valid email address.',
+            'email.unique' => 'The email has already been taken.',
+            'password.required' => 'The password field is required.',
+            'password.min' => 'The password must be at least 4 characters long.',
+            'tag_ids.*.exists' => 'One or more selected tags do not exist.',
+        ];
+    }
 }

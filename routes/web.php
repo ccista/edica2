@@ -28,6 +28,14 @@ use App\Http\Controllers\Admin\Post\EditController as AdminPostEditController;
 use App\Http\Controllers\Admin\Post\UpdateController as AdminPostUpdateController;
 use App\Http\Controllers\Admin\Post\DeleteController as AdminPostDeleteController;
 
+use App\Http\Controllers\Admin\User\IndexController as AdminUserIndexController;
+use App\Http\Controllers\Admin\User\CreateController as AdminUserCreateController;
+use App\Http\Controllers\Admin\User\StoreController as AdminUserStoreController;
+use App\Http\Controllers\Admin\User\ShowController as AdminUserShowController;
+use App\Http\Controllers\Admin\User\EditController as AdminUserEditController;
+use App\Http\Controllers\Admin\User\UpdateController as AdminUserUpdateController;
+use App\Http\Controllers\Admin\User\DeleteController as AdminUserDeleteController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -42,7 +50,7 @@ Route::name('main.')->group(function () {
 
 Route::prefix('admin')
     ->name('admin.')
-    //->middleware('auth', 'admin')
+    ->middleware('auth', 'admin')
     ->group(function () {
         
     Route::get('/', AdminIndexController::class)->name('index');
@@ -131,6 +139,35 @@ Route::prefix('admin')
                     ->name('delete');
             });
         /****** End Posts *******/
+        
+        /****** Пользователи *******/        
+        Route::prefix('users')
+            ->name('users.')
+            ->group(function () {
+                Route::get('/', AdminUserIndexController::class)->name('index');
+
+                Route::get('/create', AdminUserCreateController::class)
+                    ->name('create');
+
+                Route::post('/', AdminUserStoreController::class)
+                     ->name('store');
+                
+                Route::get('/{user}', AdminUserShowController::class)
+                     ->name('show');
+                /* 
+                    можно и так, то есть без разницы с верхними
+                    но это если контролеер обычный, а не одноконтроллерный, то есть с методом __invoke
+                */
+                Route::get('/{user}/edit', [AdminUserEditController::class, '__invoke']) 
+                     ->name('edit');
+
+                Route::put('/{user}', [AdminUserUpdateController::class, '__invoke'])
+                     ->name('update');
+
+                Route::delete('/{user}', [AdminUserDeleteController::class, '__invoke'])
+                    ->name('delete');
+            });
+            /****** End Пользователи *******/
 
 
 });

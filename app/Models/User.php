@@ -17,6 +17,16 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    const ROLE_ADMIN = 0;
+    const ROLE_READER = 1;
+
+    public static function getRoles(){
+        return [
+            self::ROLE_ADMIN => "Админ",
+            self::ROLE_READER => "Читатель"
+        ];
+    }
+
     /**
      * Get the attributes that should be cast.
      *
