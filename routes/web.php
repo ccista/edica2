@@ -36,6 +36,30 @@ use App\Http\Controllers\Admin\User\EditController as AdminUserEditController;
 use App\Http\Controllers\Admin\User\UpdateController as AdminUserUpdateController;
 use App\Http\Controllers\Admin\User\DeleteController as AdminUserDeleteController;
 
+use App\Http\Controllers\Personal\Main\IndexController as PersonalIndexController;
+use App\Http\Controllers\Personal\Liked\IndexController as PersonalLikedIndexController;
+use App\Http\Controllers\Personal\Comment\IndexController as PersonalCommentIndexController;
+
+// Личный кабинет
+Route::prefix('personal')
+    ->name('personal.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/', PersonalIndexController::class)->name('index');
+
+        Route::prefix('liked')
+            ->name('liked.')
+            ->group(function () {
+                Route::get('/', PersonalLikedIndexController::class)->name('index');
+            });
+        
+            Route::prefix('comment')
+            ->name('comment.')
+            ->group(function () {
+                Route::get('/', PersonalCommentIndexController::class)->name('index');
+            });
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -46,6 +70,7 @@ Auth::routes();
 Route::name('main.')->group(function () {
     Route::get('/', IndexController::class)->name('index');
 });
+
 
 
 Route::prefix('admin')
@@ -168,6 +193,5 @@ Route::prefix('admin')
                     ->name('delete');
             });
             /****** End Пользователи *******/
-
-
 });
+
